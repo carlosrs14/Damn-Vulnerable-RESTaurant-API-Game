@@ -4,6 +4,5 @@ router = APIRouter()
 
 
 @router.get("/healthcheck")
-def healthcheck(response: Response):
-    response.headers["X-Powered-By"] = "Python 3.10, FastAPI ^0.103.0"
+def healthcheck():
     return {"ok": True}
