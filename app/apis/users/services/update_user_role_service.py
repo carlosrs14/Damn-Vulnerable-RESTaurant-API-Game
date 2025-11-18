@@ -14,6 +14,9 @@ async def update_user_role(
     user: UserRoleUpdate,
     current_user: Annotated[models.User, Depends(get_current_user)],
     db: Session = Depends(get_db),
+    auth: models.User = Depends(
+        RolesBasedAuthChecker([models.UserRole.EMPLOYEE, models.UserRole.CHEF])
+    ),
 ):
     # this method allows staff to give Employee role to other users
     # Chef role is restricted
